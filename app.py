@@ -4,16 +4,18 @@ import os
 import time
 
 app = Flask(__name__)
-API_KEY = "123abc"
+API_KEY = os.getenv("API_KEY")
+if not API_KEY:
+    raise ValueError("No API_KEY set for Flask application")
 
 @app.route('/tts', methods=['POST'])
 def text_to_speech():
     # Check if API key is present in headers
-    if 'API-Key' not in request.headers:
+    if 'x-api-key' not in request.headers:
         return jsonify({"error": "API key missing"}), 401
     
     # Check if API key matches the required key
-    if request.headers['API-Key'] != API_KEY:
+    if request.headers['x-api-key'] != API_KEY:
         return jsonify({"error": "Invalid API key"}), 403
     text = request.json.get('text')
     voice = request.json.get('voice')
