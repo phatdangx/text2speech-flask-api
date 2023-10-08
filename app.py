@@ -8,6 +8,10 @@ API_KEY = os.getenv("API_KEY")
 if not API_KEY:
     raise ValueError("No API_KEY set for Flask application")
 
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": 'OK'}), 200
+
 @app.route('/tts', methods=['POST'])
 def text_to_speech():
     # Check if API key is present in headers
