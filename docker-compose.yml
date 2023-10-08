@@ -4,6 +4,8 @@ services:
   app:
     build: .
     command: ["gunicorn", "--config", "gunicorn_config.py", "app:app"]
+    environment:
+      - API_KEY=${API_KEY}
     expose:
       - "8080"
       
