@@ -6,7 +6,6 @@ A Text-To-Speech (TTS) API implemented using Flask. This repository provides a D
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
 - [Usage](#usage)
-- [API Documentation](#api-documentation)
 
 ## Prerequisites
 - Docker and Docker Compose installed on your machine.
@@ -43,6 +42,10 @@ Note: If you want to change the API_KEY for any reason:
 
 ## Ussage
 To use the TTS API, make a POST request to the API endpoint with the text you want to convert:
+- `rate` is the reading speed. Its value range is [-100, 100]
+- `volume` is the voice volume in the output file. Its value range is [-100,100]
+- `voice` is the the voice in the output file. You can check for more voices in the file `voice_list.txt`
+
 ```
 curl --location 'https://yourdomain.com/tts' \
 --header 'x-api-key: sample_api_key' \
