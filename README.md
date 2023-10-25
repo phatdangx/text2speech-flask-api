@@ -20,7 +20,7 @@ A Text-To-Speech (TTS) API implemented using Flask. This repository provides a D
     ```sh
     git clone <repository-url>
     cd <repository-dir>
-2. IMPORTANT - Set the enviroment variable:
+2. **IMPORTANT** - Set the API_KEY enviroment variable, this helps  to prevent your API from unauthorized ussage. You can use any UUID online generator for this, like this [UUID Generator](https://www.uuidgenerator.net/version1):
     ```
     export API_KEY=value
     ```
