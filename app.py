@@ -2,6 +2,7 @@ from flask import Flask, request, send_file, jsonify
 import subprocess
 import os
 import time
+import constant
 
 app = Flask(__name__)
 API_KEY = os.getenv("API_KEY")
@@ -29,10 +30,16 @@ def text_to_speech():
         return jsonify({"error": "No text provided"}), 400
     if not voice:
         voice = "en-US-AriaNeural"
+    if voice not in constant.VOICE_LIST:
+        return jsonify({"error": "Voice does not exist"}), 400
     if not rate_param:
         rate_param = 0
+    if rate_param < -100 or rate_param > 100:
+        return jsonify({"error": "Rate is not correct"}), 400
     if not volume_param:
         volume_param = 0
+    if volume_param < -100 or volume_param > 100:
+        return jsonify({"error": "Volume is not correct"}), 400
     
     rate_option = ""
     if rate_param >= 0:
